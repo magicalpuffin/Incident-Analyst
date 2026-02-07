@@ -1,22 +1,37 @@
 {
-  "name": "incident-analyst-frontend",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "14.1.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "devDependencies": {
-    "@types/node": "20.11.0",
-    "@types/react": "18.2.47",
-    "@types/react-dom": "18.2.18",
-    "typescript": "5.3.3"
-  }
+	"name": "incident-analyst-frontend",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev -H 0.0.0.0",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@radix-ui/react-label": "^2.1.8",
+		"@radix-ui/react-separator": "^1.1.8",
+		"@radix-ui/react-slot": "^1.2.4",
+		"@radix-ui/react-tooltip": "^1.2.8",
+		"@tailwindcss/postcss": "^4.1.18",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"lucide-react": "^0.563.0",
+		"next": "14.1.0",
+		"next-themes": "^0.4.6",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"react-resizable-panels": "^4.6.2",
+		"tailwind-merge": "^3.4.0",
+		"tailwindcss-animate": "^1.0.7"
+	},
+	"devDependencies": {
+		"@types/node": "20.11.0",
+		"@types/react": "18.2.47",
+		"@types/react-dom": "18.2.18",
+		"autoprefixer": "^10.4.24",
+		"postcss": "^8.5.6",
+		"tailwindcss": "^4.1.18",
+		"typescript": "5.3.3"
+	}
 }

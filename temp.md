@@ -1,0 +1,1 @@
+Review the CLAUDE.md and README.md. Connect the fastapi backend and nextjs frontend. The nextjs frontend should be rewritten to use shadcn and tailwindcss. The app is a dashboard which allows engineers to enter logs about issues with kubernetes and chat with an AI to better understand their issue. It should connect to metrics and logs however that is not needed in the mvp

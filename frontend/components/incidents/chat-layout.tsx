@@ -1,0 +1,88 @@
+"use client"
+
+import * as React from "react"
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable"
+
+import { cn } from "@/lib/utils"
+import { Separator } from "@/components/ui/separator"
+import { Chat } from "./chat"
+import { IncidentForm } from "./incident-form"
+import { useChat } from '@/lib/chat-context'
+import { RocketIcon } from "lucide-react"
+
+interface ChatLayoutProps {
+  defaultLayout: number[] | undefined
+  defaultCollapsed?: boolean
+  navCollapsedSize: number
+}
+
+export function ChatLayout({
+  defaultLayout = [440, 655],
+  defaultCollapsed = false,
+  navCollapsedSize,
+}: ChatLayoutProps) {
+  const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed)
+  const { analysis } = useChat()
+
+  return (
+    <ResizablePanelGroup
+      direction="horizontal"
+      onLayout={(sizes: number[]) => {
+        document.cookie = `react-resizable-panels:layout=${JSON.stringify(
+          sizes
+        )}`
+      }}
+      className="h-full items-stretch"
+    >
+      <ResizablePanel
+        defaultSize={defaultLayout[0]}
+        collapsedSize={navCollapsedSize}
+        collapsible={true}
+        minSize={30}
+        maxSize={40}
+        onCollapse={() => {
+          setIsCollapsed(true)
+          document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(
+            true
+          )}`
+        }}
+        onExpand={() => {
+          setIsCollapsed(false)
+          document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(
+            false
+          )}`
+        }}
+        className={cn(
+          isCollapsed && "min-w-[50px] transition-all duration-300 ease-in-out"
+        )}
+      >
+        <div
+          className={cn(
+            "flex h-[52px] items-center justify-center",
+            isCollapsed ? "h-[52px]" : "px-2"
+          )}
+        >
+          <IncidentForm />
+        </div>
+        <Separator />
+      </ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel defaultSize={defaultLayout[1]} minSize={30}>
+        {analysis ? (
+          <Chat />
+        ) : (
+          <div className="flex h-full items-center justify-center">
+            <div className="text-center text-muted-foreground">
+              <RocketIcon className="mx-auto h-10 w-10 mb-4" />
+              <p>Submit logs to get AI-powered analysis</p>
+            </div>
+          </div>
+        )}
+      </ResizablePanel>
+    </ResizablePanelGroup>
+  )
+}
